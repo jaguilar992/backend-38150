@@ -54,9 +54,9 @@ process.on("uncaughtException", (err) => {
 
 console.xlog({
   numeros,
-  promedio: 0, // TODO
-  max: 0, //TODO
-  min: 0, //TODO
+  promedio, // TODO
+  max, //TODO
+  min, //TODO
   ejecutable,
   pid,
 })
