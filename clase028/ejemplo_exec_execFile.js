@@ -1,32 +1,34 @@
 const {exec, execFile, spawn} = require("child_process");
 
-exec("sleep 1; ls -lh", (err, stdout, stderr) => {
-  if (err) {
-    console.log(`err ${err}`);
-  }
+// exec("sleep 1; ls -lh", (err, stdout, stderr) => {
+//   if (err) {
+//     console.log(`err ${err}`);
+//   }
 
-  if (stderr) {
-    console.log(`stderr ${stderr}}`)
-  }
+//   if (stderr) {
+//     console.log(`stderr ${stderr}}`)
+//   }
 
-  console.log(`stdout ${stdout}`);
-});
+//   console.log(`stdout ${stdout}`);
+// });
 
-execFile(__dirname + "/program.sh", (err, stdout, stderr) => {
-  if (err) {
-    console.log(`err ${err}`);
-  }
+// chmod +x program.sh
+// execFile(__dirname + "/program.sh", (err, stdout, stderr) => {
+//   console.log(__dirname + "/program.sh" );
+//   if (err) {
+//     console.log(`err ${err}`);
+//   }
 
-  if (stderr) {
-    console.log(`stderr ${stderr}}`)
-  }
+//   if (stderr) {
+//     console.log(`stderr ${stderr}}`)
+//   }
 
-  console.log(`stdout ${stdout}`);
-});
+//   console.log(`stdout ${stdout}`);
+// });
 
 const child = spawn("ls", ["-lh"]);
 
-child.stdout.on("data", data => {
+child.stdout.on("data", data => { // Stream de data
   console.log(`stdout: ${data}`);
 });
 
