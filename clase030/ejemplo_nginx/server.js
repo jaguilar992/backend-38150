@@ -4,7 +4,7 @@ const app = express();
 
 const PORT = parseInt(process.argv[2]) || 8081;
 
-app.use(express.static("./static"));
+// app.use(express.static("./static"));
 
 app.get("/datos", (req, res) => {
   console.log(`PORT: ${PORT}} -> Date: ${Date.now()}`)
