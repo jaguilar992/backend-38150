@@ -1,0 +1,2 @@
+[2023-03-15T18:45:14.347] [INFO] productionLogger - Operacion exitosa: Resultado suma = 13
+[2023-03-15T18:45:35.289] [WARN] productionLogger - Ruta no encontrada /resta
