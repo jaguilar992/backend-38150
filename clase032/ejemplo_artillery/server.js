@@ -15,6 +15,11 @@ function isPrime(n) {
   return true;
 }
 
+
+function randomInt(a, b) {
+  return a + Math.floor(Math.random()* Math.abs(b - a) + 1)
+}
+
 const PORT = parseInt(process.argv[2]) || 8080;
 const modoCluster = process.argv[3] === 'CLUSTER';
 
@@ -41,6 +46,16 @@ if (modoCluster && cluster.isPrimary) {
     res.json(primes);
   });
 
+  app.get("/random", (req, res) => {
+    const random_numbers = [];
+    const max = Number.parseInt(req.query.max) || 1000;
+    for (let j=1; j <= max; j++) {
+      const r = randomInt(0,10);
+      random_numbers.push(r)
+    }
+    res.json(random_numbers);
+  })
+
   app.listen(PORT, () => {
     console.log(`PID: ${process.pid}. Servidor express escuchando en puerto ${PORT}`);
   });
@@ -60,8 +75,7 @@ if (modoCluster && cluster.isPrimary) {
 
 // Analizar los logs (Procesar el output del profiler)
 // node --prof-process 
-// node --prof-process isolate-0x140078000-81518-v8.log > resultados_node_p
-// rofiler.txt
+// node --prof-process isolate-0x140078000-81518-v8.log > resultados_node_profiler.txt
 
 
 // Math.floor(Math.random() * 10)
