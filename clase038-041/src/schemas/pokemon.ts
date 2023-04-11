@@ -1,7 +1,7 @@
 import {Schema, model} from "mongoose";
 
 export interface PokemonDTO {
-  id?: number;
+  id?: number; // numero del pokemon
   name?: string;
   type?: string;
 }

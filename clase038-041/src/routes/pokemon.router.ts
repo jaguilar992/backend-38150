@@ -1,7 +1,15 @@
 import { Router } from "express";
-import { getAllPokemons } from "../controller/pokemon.controller";
+import {
+  createPokemon,
+  deletePokemon,
+  getAllPokemons,
+  getPokemonById,
+} from "../controller/pokemon.controller";
+import { authMiddleware } from "../middleware/auth.middleware";
 const pokemonRouter = Router();
 
-pokemonRouter.get("/", getAllPokemons)
-
+pokemonRouter.get("/", getAllPokemons);
+pokemonRouter.get("/:id", getPokemonById);
+pokemonRouter.post("/", createPokemon);
+pokemonRouter.delete("/:id", authMiddleware, deletePokemon);
 export default pokemonRouter;
