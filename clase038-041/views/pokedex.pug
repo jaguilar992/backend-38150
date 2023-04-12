@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title Pokedex
+    link(rel="stylesheet" type="text/css" href="assets/css/pokedex.style.css")
+  body
+    h1 Pokedex
+    .pokemon-container
+      each pokemon in pokemons
+        .pokemon-card
+          img.pokemon-image(src=pokemon.image, alt=pokemon.name)
+          .pokemon-name #{pokemon.id} #{pokemon.name}
+          .pokemon-types
+              span.pokemon-type #{pokemon.type}
