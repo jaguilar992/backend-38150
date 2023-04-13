@@ -31,6 +31,7 @@ export const createPokemon = async (req, res) => {
   }
   // Crear el pokemon
   const _pokemon: PokemonDTO = {id, name, type};
+  _pokemon.image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
   const pokemon = await pokemonRepository.createPokemon(_pokemon);
   return res.status(201).json({ data: pokemon, message: "Pokemon has been created" });
 }
@@ -42,4 +43,9 @@ export const deletePokemon = async (req, res) => {
   }
   const deleted = await pokemonRepository.deletePokemon(id);
   res.json({ message: "Pokemon has been deleted", data: deleted });
+}
+
+export const renderPokedex = async (req, res) => {
+  const pokemons = await pokemonRepository.getAllPokemons();
+  res.render("pokedex", { pokemons });
 }

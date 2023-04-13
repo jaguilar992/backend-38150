@@ -5,7 +5,7 @@ import { PORT } from "../config";
 import { logger } from "./logger";
 // Import routers
 import pokemonRouter from "./routes/pokemon.router";
-import pokemonRepository from "./repository/pokemon.repository";
+import pokemonViewsRouter from "./routes/pokemon.views.router";
 
 const app = express();
 app.set("view engine", "pug");
@@ -22,8 +22,15 @@ app.use(express.static(__dirname + "/../public"));
 
 // Routes
 app.use("/api/pokemon", pokemonRouter);
+app.use("/views/pokemon", pokemonViewsRouter);
 
-app.get("/", (req, res) => {res.json({time: Date.now()})});
+app.get("/", (req, res) => {
+  res.render("index", {
+    title: "Pokedex",
+    message: "Welcome to the Pokedex",
+    time: Date.now(),
+  })
+});
 
 const server = app.listen(PORT, () => {
   logger.info(`🔋 Server running on port::${PORT}`);

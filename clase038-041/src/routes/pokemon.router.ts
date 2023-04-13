@@ -4,6 +4,7 @@ import {
   deletePokemon,
   getAllPokemons,
   getPokemonById,
+  renderPokedex,
 } from "../controller/pokemon.controller";
 import { authMiddleware } from "../middleware/auth.middleware";
 const pokemonRouter = Router();
