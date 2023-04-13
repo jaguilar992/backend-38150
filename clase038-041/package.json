@@ -45,7 +45,6 @@
     "md5": "^2.3.0",
     "mongoose": "^6.5.3",
     "node-cron": "^3.0.2",
-    "node-ts": "^5.1.2",
     "nodemailer": "^6.8.0",
     "pino": "^8.7.0",
     "pino-pretty": "^9.1.1",
