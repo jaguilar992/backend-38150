@@ -8,6 +8,6 @@ import {
 } from "../controller/pokemon.controller";
 const pokemonViewsRouter = Router();
 
-pokemonViewsRouter.get("/view", renderPokedex);
+pokemonViewsRouter.get("/", renderPokedex);
 
 export default pokemonViewsRouter;

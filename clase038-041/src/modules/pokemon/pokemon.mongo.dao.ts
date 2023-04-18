@@ -1,6 +1,22 @@
-import { PokemonDTO, PokemonModel } from "../schemas/pokemon";
+import {Schema, model} from "mongoose";
 
-export class PokemonRepository {
+export interface PokemonDTO {
+  id?: number; // Número del pokemon
+  name?: string;
+  type?: string;
+  image?: string;
+}
+
+export const PokemonSchema = new Schema<PokemonDTO>({
+  id: {type: Number, required: true, default: 0},
+  name: {type: String, required: true, default: ""},
+  type: {type: String, required: true, default: ""},
+  image: {type: String, required: true, default: ""},
+});
+
+export const PokemonModel = model("pokemon", PokemonSchema);
+
+export class PokemonDAOMongo {
   public async getAllPokemons() {
     return await PokemonModel.find();
   }
@@ -28,4 +44,4 @@ export class PokemonRepository {
   }
 }
 
-export default new PokemonRepository();
+export default new PokemonDAOMongo();
