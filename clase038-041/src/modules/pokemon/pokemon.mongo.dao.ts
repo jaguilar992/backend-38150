@@ -1,11 +1,5 @@
 import {Schema, model} from "mongoose";
-
-export interface PokemonDTO {
-  id?: number; // Número del pokemon
-  name?: string;
-  type?: string;
-  image?: string;
-}
+import { PokemonDTO } from "./pokemon.dto";
 
 export const PokemonSchema = new Schema<PokemonDTO>({
   id: {type: Number, required: true, default: 0},

@@ -6,6 +6,7 @@ import { logger } from "./logger";
 // Import routers
 import pokemonRouter from "./routes/pokemon.router";
 import pokemonViewsRouter from "./routes/pokemon.views.router";
+import trainerRouter from "./routes/trainer.router";
 
 const app = express();
 app.set("view engine", "pug");
@@ -23,6 +24,8 @@ app.use(express.static(__dirname + "/../public"));
 // Routes
 app.use("/api/pokemon", pokemonRouter);
 app.use("/views/pokemon", pokemonViewsRouter);
+
+app.use("/trainer", trainerRouter);
 
 app.get("/", (req, res) => {
   res.render("index", {
