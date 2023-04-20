@@ -1,0 +1,24 @@
+    <>
+      <h1>Pokedex</h1>
+      <div className="pokemon-container">
+        <br />
+        {pokemons.map((pokemon) => {
+          return (
+            <div className="pokemon-card" key={pokemon.id}>
+              <img
+                className="pokemon-image"
+                src={pokemon.image}
+                alt={pokemon.name}
+              />
+              <div className="pokemon-name">
+                {" "}
+                {pokemon.id} {pokemon.name}
+              </div>
+              <div className="pokemon-types">
+                <span className="pokemon-type">{pokemon.type}</span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </>

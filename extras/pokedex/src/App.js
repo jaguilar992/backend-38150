@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import "./App.css";
-import axios from "axios";
+import { BrowserRouter as Router, Route, createBrowserRouter, RouterProvider } from "react-router-dom";
+import { PokedexScreen } from "./components/Pokedex.screen";
+import { PokemonForm } from "./components/PokemonForm.screen";
+import { TrainerScreen } from "./components/trainer.screen";
 
 const config = {
   method: "get",
@@ -13,42 +16,14 @@ function App() {
   // Request
   const [pokemons, setPokemons] = useState([]);
 
-  axios
-    .request(config)
-    .then((response) => {
-      const _pokemons = response.data.data;
-      setPokemons(_pokemons);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  const router = createBrowserRouter([
+    {path: "/", element: <h1>Welcome to Pokedex</h1>},
+    {path: "/pokedex", element: <PokedexScreen /> },
+    {path: '/trainer/:dni' , element: <TrainerScreen />  },
+    {path: "/pokemon/new", element: <PokemonForm /> },
+  ])
 
-  return (
-    <>
-      <h1>Pokedex</h1>
-      <div className="pokemon-container">
-        <br />
-        {pokemons.map((pokemon) => {
-          return (
-            <div className="pokemon-card" key={pokemon.id}>
-              <img
-                className="pokemon-image"
-                src={pokemon.image}
-                alt={pokemon.name}
-              />
-              <div className="pokemon-name">
-                {" "}
-                {pokemon.id} {pokemon.name}
-              </div>
-              <div className="pokemon-types">
-                <span className="pokemon-type">{pokemon.type}</span>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </>
-  );
+  return <RouterProvider router={router}/>
 }
 
 export default App;
