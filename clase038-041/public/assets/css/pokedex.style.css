@@ -20,14 +20,23 @@ h1 {
 	margin: 10px;
 	padding: 20px;
 	text-align: center;
-	width: 200px;
+	width: 120px;
 }
+
+.pokemon-number {
+	font-size: 0.8em;
+	color: #999;
+	top: -90px;
+	left: -10px;
+	position: relative;
+}
+
 .pokemon-image {
 	max-width: 150px;
 	max-height: 150px;
 }
 .pokemon-name {
-	font-size: 1.2em;
+	font-size: 1em;
 	font-weight: bold;
 	margin-top: 10px;
 }

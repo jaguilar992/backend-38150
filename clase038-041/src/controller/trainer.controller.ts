@@ -35,3 +35,27 @@ export async function addPokemon(req, res) {
   const trainer = await trainerRepository.addPokemonToPokedexTrainer(dni, pokemonId);
   res.json({data: trainer});
 }
+
+export async function removePokemon(req, res) {
+  const { dni } = req.params;
+  const { pokemonId } = req.body;
+  if (!dni || !pokemonId) {
+    console.log("Missing params");
+    return res.status(400).json({ message: "Missing params" });
+  }
+  const trainer = await trainerRepository.removePokemonFromPokedexTrainer(dni, pokemonId);
+  res.json({data: trainer});
+}
+
+export async function renderPokedex(req, res) {
+  const { dni } = req.params;
+  const trainer = await trainerRepository.findOne(dni);
+  if (!trainer) {
+    console.log("Trainer not found");
+    return res.status(404).json({ message: "Trainer not found" });
+  }
+  res.render("pokedex", { 
+    pokemons: trainer.pokemons,
+    title: `${trainer.name}'s Pokedex`,
+  });
+}

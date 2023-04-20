@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title #{pokemon.name}
+    link(rel="stylesheet" type="text/css" href="/assets/css/pokemon.style.css")
+  body
+    h1 #{pokemon.name}
+    .pokemon-container
+      .pokemon-card
+        .pokemon-image-container
+          img.pokemon-image(src=pokemon.image, alt=pokemon.name)
+        .pokemon-info-container
+          .pokemon-id #{pokemon.id}
+          .pokemon-name #{pokemon.name}
+          .pokemon-types
+            span.pokemon-type #{pokemon.type}

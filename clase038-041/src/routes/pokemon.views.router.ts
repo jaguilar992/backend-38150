@@ -1,13 +1,11 @@
 import { Router } from "express";
 import {
-  createPokemon,
-  deletePokemon,
-  getAllPokemons,
-  getPokemonById,
   renderPokedex,
+  renderPokemon
 } from "../controller/pokemon.controller";
 const pokemonViewsRouter = Router();
 
 pokemonViewsRouter.get("/", renderPokedex);
+pokemonViewsRouter.get("/:id", renderPokemon);
 
 export default pokemonViewsRouter;

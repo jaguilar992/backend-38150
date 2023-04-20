@@ -15,14 +15,16 @@ export class TrainerRepository implements Repository {
     return trainers;
   }
 
-  async findOne(dni: number): Promise<TrainerDTO> {
+  async findOne(dni: number): Promise<TrainerDTO | null> {
     const trainer: TrainerDTO = await this.trainerDAO.getTrainerByDNI(dni);
+    if (!trainer) {
+      return null;
+    }
     let _pokemons: any = await trainer?.pokemons?.map(async (id: any) => {
       const _pokemon = await pokemonRepository.findOne(id);
       return _pokemon;
     });
     _pokemons = await Promise.all(_pokemons);
-    trainer.pokemons = _pokemons;
     return {
       name: trainer.name,
       dni: trainer.dni,
@@ -42,6 +44,15 @@ export class TrainerRepository implements Repository {
       throw new Error("Trainer not found");
     }
     trainer.pokemons.push(pokemonId);
+    return await this.trainerDAO.updateTrainer(dni, trainer);
+  }
+
+  async removePokemonFromPokedexTrainer(dni: number, pokemonId: number) {
+    const trainer = await this.trainerDAO.getTrainerByDNI(dni);
+    if (!trainer) {
+      throw new Error("Trainer not found");
+    }
+    trainer.pokemons = trainer.pokemons.filter((id: any) => id !== pokemonId);
     return await this.trainerDAO.updateTrainer(dni, trainer);
   }
 

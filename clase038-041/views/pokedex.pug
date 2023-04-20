@@ -1,14 +1,15 @@
 doctype html
 html
   head
-    title Pokedex
+    title #{title}
     link(rel="stylesheet" type="text/css" href="/assets/css/pokedex.style.css")
   body
-    h1 Pokedex
+    h1 #{title}
     div.pokemon-container
       each pokemon in pokemons
-        div.pokemon-card
+        div.pokemon-card(onclick="(()=>window.location.href='/views/pokemon/"+ pokemon.id +"')()")
+          span.pokemon-number #{pokemon.id}
           img.pokemon-image(src=pokemon.image, alt=pokemon.name)
-          div.pokemon-name #{pokemon.id} #{pokemon.name}
+          div.pokemon-name #{pokemon.name}
           div.pokemon-types
               span.pokemon-type #{pokemon.type}
