@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  div.products
+    ul 
+      each product in products
+        li #{product.name}
+
+      form(action='/products', method='POST')
+        label(for='name') Product Name:
+        input(type='text', id='name', name='name', placeholder='Product')
+
+        button(type='submit') Add Product
