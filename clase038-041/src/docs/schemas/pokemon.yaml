@@ -1,0 +1,25 @@
+components:
+  schemas:
+    Pokemon:
+      type: object
+      required:
+        - id
+        - name
+        - type
+      properties:
+        id:
+          type: number
+          description: The pokemon id
+        name:
+          type: string
+          description: The pokemon name
+        type:
+          type: string
+          description: The pokemon type
+      example:
+        id: 1
+        name: Bulbasaur
+        type: Grass
+  requestBodies:
+    NewPokemon:
+      $ref: '#/components/schemas/Pokemon'

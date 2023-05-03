@@ -1,0 +1,90 @@
+paths:
+  /api/pokemon:
+    get:
+      summary: 'Endpoint for: Get all pokemons'
+      tags:
+        - Pokemon
+      responses:
+        200:
+          description: All pokemons
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Pokemon"
+    post:
+      summary: 'Endpoint for: Create a new pokemon'
+      tags:
+        - Pokemon
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/requestBodies/NewPokemon"
+      responses:
+        201:
+          description:: Pokemon has been created
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Pokemon"
+                  message:
+                    type: string
+
+  /api/pokemon/{id}:
+    get:
+      summary: 'Endpoint for: retrieve a Pokemon '
+      tags:
+        - Pokemon
+      parameters:
+        - name: id
+          in: path
+          description: Pokemon id
+          required: true
+          type: number
+      responses:
+        200:
+          description: All pokemons
+          content:
+            application/json:
+              schema:
+                properties:
+                  data: 
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Pokemon"
+        404:
+          decription: Pokemon not found
+    delete:
+      summary: 'Endpoint for: Delete a pokemon'
+      security:
+        - BearerAuth: []
+      tags:
+        - Pokemon
+      parameters:
+        - name: id
+          in: path
+          description: Pokemon id
+          required: true
+          type: number
+      responses:
+        200:
+          description: All pokemons
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                  data:
+                    type: boolean
+        404:
+          decription: Pokemon not found

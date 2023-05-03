@@ -9,7 +9,26 @@ import pokemonViewsRouter from "./routes/pokemon.views.router";
 import trainerRouter from "./routes/trainer.router";
 import trainerViewsRouter from "./routes/trainer.view.router";
 
+import swaggerUi from "swagger-ui-express";
+import swaggerJSDoc from "swagger-jsdoc";
+import {SwaggerOptions} from "./swagger.config";
+
+const specs = swaggerJSDoc(SwaggerOptions);
+
 const app = express();
+
+app.use(
+  "/api/docs", 
+  swaggerUi.serve, 
+  swaggerUi.setup(specs, {
+    SwaggerOptions: {
+      url: "/api/docs/swagger.json"
+    }
+  })
+);
+
+app.get("/docs/swagger.json", (req, res) => res.json(specs));
+
 app.set("view engine", "pug");
 app.set("views", __dirname + "/../views/");
 
