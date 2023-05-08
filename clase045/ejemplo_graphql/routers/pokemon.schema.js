@@ -1,0 +1,27 @@
+import { buildSchema } from "graphql";
+
+export const pokemonSchema = buildSchema(`
+  type Pokemon {
+    id: ID!
+    name: String
+    type: String
+    number: Int
+  }
+
+  input PokemonInput {
+    name: String
+    type: String
+    number: Int
+  }
+
+  type Query {
+    getPokemon(id: ID!): Pokemon
+    getPokemons(campo: String, valor: String): [Pokemon]
+  }
+
+  type Mutation {
+    addPokemon(data: PokemonInput): Pokemon
+    updatePokemon(id: ID!, data: PokemonInput): Pokemon
+    deletePokemon(id: ID!): Pokemon
+  }
+`);
