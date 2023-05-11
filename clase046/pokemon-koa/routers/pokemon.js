@@ -1,5 +1,5 @@
 const Router= require("koa-router");
-const { findAll } = require("../controllers/pokemon_controller");
+const { findAll } = require("../controller/pokemon");
 
 const router = new Router({
   prefix: "/pokemon"
